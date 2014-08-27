@@ -41,4 +41,4 @@ Once the project moves into development, the press release can be used as a touc
   "Before SocialSync, I was morbidly obese, sad, alone and covered in backne.  Now I pop bubbly with European supermodels on my king-size mattress stuffed with hundred-dollar bills!  Thanks, SocialSync!!"
 
 ## Closing and Call to Action ##
-  This extension is the shit.  Download it and get started.
+  SocialSync is next-level, homey.  Download it and get started today!
