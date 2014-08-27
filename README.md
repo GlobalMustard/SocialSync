@@ -1,12 +1,12 @@
 # Project Name
 
-> Pithy project description
+SocialSync: chrome extension enabling real-time notification of social media events.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Brandon Yun
+  - __Scrum Master__: Joe Lowinske
+  - __Development Team Members__: Jeff Van Dalsum
 
 ## Table of Contents
 
