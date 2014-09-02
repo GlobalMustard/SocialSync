@@ -1,1 +1,18 @@
 <!-- head, scripts, div w/ ng-view, etc. -->
+<!doctype html>
+<html ng-app="socialsync">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- <link rel="stylesheet" type="text/css" href="styles/style.css" /> -->
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="app/auth/auth.js"></script>
+    <script type="text/javascript" src="app/notifications/notifications.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+  </head>
+  <body>
+   <div ui-view>
+   </div>
+  </body>
+</html>
