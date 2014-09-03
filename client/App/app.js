@@ -5,27 +5,6 @@ angular.module('socialsync', [
   ])
 
 .config(function($stateProvider, $urlRouterProvider) {
-
-  $urlRouterProvider.otherwise('/notifications');
-
-  $stateProvider
-    .state('home', {
-      url: '/notifications', //UPDATE FOR CHILD VIEWS
-      templateUrl: 'app/notifications/notifications.html'
-    })
-    .state('auth', {
-      url: '/auth', //UPDATE FOR CHILD VIEWS
-      templateUrl: 'app/auth/auth.html'
-    })
+  $urlRouterProvider.otherwise('/notifications/twitter');
 })
-.run(); //handle tokens, etc.
-
-/*
-DESCRIPTION: main page of app, integrate modules;
-
-CONFIG: ??
-
-FACTORIES: ??
-
-RUN: ??
-*/
+.run(); //TODO: handle tokens, etc.
