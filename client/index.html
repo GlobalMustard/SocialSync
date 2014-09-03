@@ -4,15 +4,22 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
-    <!-- <link rel="stylesheet" type="text/css" href="styles/style.css" /> -->
-    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="app/styles/style.css" />
+    <!-- TODO: revert to angular.min.js for deployment -->
+    <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script type="text/javascript" src="app/auth/auth.js"></script>
     <script type="text/javascript" src="app/notifications/notifications.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
   </head>
   <body>
-   <div ui-view>
+    <nav class="nav-bar" ng-controller="NotificationsController">
+      <!-- TODO: figure out if you can ng-click image wrapped in link -->
+      <a ui-sref="notifications.twitter"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png" ng-click="getNotifications()"></a>
+
+      <a ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ng-click="getNotifications()"></a>
+    </nav>
+   <div class="views-container" ui-view>
    </div>
   </body>
 </html>

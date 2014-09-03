@@ -1,9 +1,16 @@
-<div>
+<div class="auth-container">
   <!-- TODO: ng-models, validation -->
-  <form class="login"> 
-    <input type="text" placeholder="username"/>
-    <input type="password" placeholder="password">
+  <form class="login-form">
+    
+    <div>
+      <input type="text" placeholder="username"/>
+    </div>
+    
+    <div>
+      <input type="password" placeholder="password"/>
+    </div>
+
+    <div class="login-button-container" ui-view>
+    </div>
   </form>
 </div>
-
-<!-- create child states? 1) login/credentials available 2)login/credentials input -->

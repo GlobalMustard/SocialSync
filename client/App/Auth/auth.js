@@ -1,43 +1,62 @@
-angular.module('socialsync.auth', [])
+angular.module('socialsync.auth', ['ui.router'])
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('auth', {
+        abstract: true,
+        url: '/auth', 
+        templateUrl: 'app/auth/auth.html'
+      })
+    .state('auth.twitter', {
+        url: '/twitter', 
+        templateUrl: 'app/auth/auth.twitter.html'
+      })
+    .state('auth.facebook', {
+        url: '/facebook', 
+        templateUrl: 'app/auth/auth.facebook.html'
+      })
+})
 
 .factory('Auth', function($http, $state) {
   var login = function(user) {
     return $http({
       method: 'POST', 
-      url: '', //SERVER URLS??
+      url: '', //TODO: GET URL INFO...MULTIPLE URLS??
       data: user,
     })
     .then(function(resp) {
       return resp.data.token;
     })
-    .error(function(err) {
-      //indicate invalid login in auth view
+    .catch(function(err) {
+      //TODO: indicate invalid login in auth view
     });
   };
 
   var signup = function(user) {
     return $http({
       method: 'POST',
-      url: '',  //GET URL INFO
+      url: '',  //TODO: GET URL INFO
       data: user
     })
     .then(function(resp) {
       return resp.data.token;
     })
-    .error(function(err) {
-      //indicate invald signup in auth view
+    .catch(function(err) {
+      //TODO: indicate invald signup in auth view
     });
   }
 
   var isAuth = function() {
     return $http({
       method: 'GET', 
-      url: '', //GET URL INFO
+      url: '', //TODO: GET URL INFO
     })
-    .then()
-    .error(function(err) {
-      //redirect to login
-      //indicate 'you need to login' in auth view state
+    .then(function(resp) {
+      return resp.data;
+    }) 
+    .catch(function(err) {
+      $state.go('') 
+      //TODO: navigate to 'You're not signed in' in appropriate auth view state
     });
   }
 
@@ -48,32 +67,21 @@ angular.module('socialsync.auth', [])
   };
 })
 
-.controller('AuthController', function($scope, $location, Auth) { //DO WE NEED LOCATION WITH UI ROUTER??
+.controller('AuthController', function($scope, $state, Auth) {
   $scope.user = {};
   
   $scope.login = function(user) {
     Auth.login($scope.user).then(function() {
-      //navigate to notifications view state
-      $location.path('/notifications');
+      //TODO: navigate to notifications view state
+      $state.go();
     });
   };
 
   $scope.signup = function(user) {
     Auth.signup($scope.user).then(function() {
-      //navigate to notifications view state
-      $location.path('/notifications');
+      //TODO: navigate to notifications view state
+      $state.go();
     })
   };
 });
 
-
-/*
-DESCRIPTION: module for authorization interface
-
-CONTROLLER:
--on click, initiate authorization for given SM (this may include login on SocialSync OR SM website...unclear right now)
--after login, render notifications view (factory more appropriate??)
-
-FACTORY:
--??
-*/
