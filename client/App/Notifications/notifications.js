@@ -1,3 +1,9 @@
+angular.module('socialsync.notifications', [])
+
+.controller('NotificationsController', function($scope) {
+
+});
+
 /*
 DESCRIPTION: module for all social media notifications
 
