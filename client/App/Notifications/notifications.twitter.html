@@ -3,7 +3,7 @@
     <li class="notifications-list-item" ng-repeat="notification in notifications.twitter">
       <img ng-src= "{{ notification.image }}"> 
       <!-- TODO: make user bold type -->
-      {{ notification.user | bold }}: 
+      {{ notification.user }}: 
       {{ notification.message }}
     </li>
   </div>

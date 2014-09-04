@@ -3,8 +3,9 @@
 <html ng-app="socialsync">
   <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>SocialSync</title>
     <link rel="stylesheet" type="text/css" href="app/styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="app/styles/bootstrap.css" />
     <!-- TODO: revert to angular.min.js for deployment -->
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -13,13 +14,15 @@
     <script type="text/javascript" src="app/app.js"></script>
   </head>
   <body>
-    <nav class="nav-bar" ng-controller="NotificationsController">
-      <!-- TODO: figure out if you can ng-click image wrapped in link -->
-      <a ui-sref="notifications.twitter"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png" ng-click="getNotifications()"></a>
+    <div class="app-container">
+      <nav class="nav-list" ng-controller="NotificationsController">
+        <!-- TODO: figure out if you can ng-click image wrapped in link -->
+        <a class="nav-link" ui-sref="notifications.twitter"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png" ng-click="getNotifications()"></a>
 
-      <a ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ng-click="getNotifications()"></a>
-    </nav>
-   <div class="views-container" ui-view>
-   </div>
+        <a class="nav-link" ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ng-click="getNotifications()"></a>
+      </nav>
+      <div class="views-container" ui-view>
+      </div>
+    </div>
   </body>
 </html>
