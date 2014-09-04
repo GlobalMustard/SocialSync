@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "SocialSync",
+  "description": "This extension gets notifications from social media sites.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "client/index.html"
+  },
+  "permissions": [
+    "storage"
+  ]
+}
