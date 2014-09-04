@@ -1,4 +1,66 @@
+
+/*index*/
+nav {
+  width: 100%;
+  float: left;
+  margin: 0 0 3px 0;
+  padding: 0;
+  list-style: none;
+  background-color: #B2095E;
+  border-bottom: 1px solid #ccc; 
+  border-top: 1px solid #ccc;
+}
+
+.app-container {
+  height: 620px;
+  width: 620px;
+}
+
+.nav-link {
+  margin-left: 10px;
+}
+
 .sm-logo {
+  margin-top: 5px;
   height: 33px;
   width: 33px;
 }
+
+.views-container {
+  width: 620px;
+  height: 620px;
+}
+
+/*auth*/
+.auth-container {
+  width: 620px;
+  height: 620px;
+}
+
+.login-form {
+
+}
+
+.login-input {
+
+}
+
+.login-button.container {
+
+}
+
+/*notifications*/
+.notifications-container {
+  height: 620px;
+  width: 620px;
+}
+
+.notifications-list {
+
+}
+
+.notifications-list-item {
+
+}
+
+
