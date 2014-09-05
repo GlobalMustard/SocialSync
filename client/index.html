@@ -14,15 +14,26 @@
     <script type="text/javascript" src="app/app.js"></script>
   </head>
   <body>
-    <div class="app-container">
-      <nav class="nav-list" ng-controller="NotificationsController">
-        <!-- TODO: figure out if you can ng-click image wrapped in link -->
-        <a class="nav-link" ui-sref="notifications.twitter"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png" ng-click="getNotifications()"></a>
 
-        <a class="nav-link" ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ng-click="getNotifications()"></a>
-      </nav>
+    <div class="app-container">
+
+      <div class="nav-container">
+        <nav ng-controller="NotificationsController">
+          <!-- TODO: figure out if you can ng-click image wrapped in link -->
+          <a class="nav-link" ui-sref="notifications.twitter"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png" ng-click="getNotifications()"></a>
+
+          <a class="nav-link" ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ng-click="getNotifications()"></a>
+
+          <a class="nav-link" ui-sref="notifications.google-plus"><img class="sm-logo" src="app/assets/google-plus/google-plus-logo.png" ng-click="getNotifications()"></a>
+        </nav>
+        <div class="banner-container">
+          <p class="app-banner">Social<span class="app-banner-substring">Sync<span></p>
+        </div>
+      </div>
+
       <div class="views-container" ui-view>
       </div>
     </div>
+
   </body>
 </html>

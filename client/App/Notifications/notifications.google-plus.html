@@ -1,0 +1,10 @@
+<ul class="notifications-list" ng-model="notifications.google-plus">
+  <div>
+    <li class="notifications-list-item-google-plus" ng-repeat="notification in notifications.google-plus">
+      <img ng-src= "{{ notification.image }}">
+      <p class="google-plus-user">{{ notification.user }}:</p> 
+      {{ notification.message }}
+      {{ notifications.createdAt }}
+    </li>
+  </div>
+</ul>
