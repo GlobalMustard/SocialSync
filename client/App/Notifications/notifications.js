@@ -20,11 +20,16 @@ angular.module('socialsync.notifications', ['ui.router'])
 
 .factory('Notifications', function($http) {
   var getNotifications = function() {
+    console.log('executed');
+
     return $http({
-      method: 'GET',
-      url: '', //TODO: NEED URL FOR SERVER/API
+      method: 'POST',
+      url: 'http://127.0.0.1:3000/twitter', //TODO: NEED URL FOR SERVER/API
+      data: {"token":"2680848008-TkyvkCOOCgeKXDgDEfpIiDhRwVBWHeaL5wfe4oT","secret":"K2DGUMFANnNpHdOFAdTPiTaJdlBOL3inNDtsdjJLSFkXw"},
+     headers: {'Content-Type': 'application/json'}
     })
     .then(function(resp){
+      console.log(resp);
       return resp.data;
     })
     .catch(function(error) {
