@@ -21,7 +21,7 @@ angular.module('socialsync.auth', ['ui.router'])
   var login = function(user) {
     return $http({
       method: 'POST', 
-      url: 'localhost:3000/auth/twitter', //TODO: GET URL INFO...MULTIPLE URLS??
+      url: '', //TODO: GET URL INFO...MULTIPLE URLS??
       data: user,
     })
     .then(function(resp) {

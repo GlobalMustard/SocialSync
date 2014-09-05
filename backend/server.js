@@ -5,15 +5,23 @@ var util = require('util');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var twitter = require('twitter');
 var url = require('url');
+var cors = require('cors');
+var bodyParser = require('body-parser');
 
 var TWITTER_CONSUMER_KEY = "jRSMv43lCUYUH0CCBCUDvm72E";  // this is our app key
 var TWITTER_CONSUMER_SECRET = "SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w"; // this is our app secret
 
+app.use(cors());
+app.use( bodyParser.json() );   
+app.use( bodyParser.urlencoded() );
+
 /* Express and passport initializiation */
-var session = require('express-session')
+var session = require('express-session');
 app.use(session({ secret: 'new secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -37,7 +45,7 @@ passport.use(new TwitterStrategy({
     process.nextTick(function () {
       tempToken = token;
       tempSecret = tokenSecret;
-      console.log("Generted token is: ", token);
+      console.log("Generated token is: ", token);
       console.log("Generated token secret is: ", tokenSecret);
       // To keep the example simple, the user's Twitter profile is returned to
       // represent the logged-in user.  In a typical application, you would want
@@ -47,6 +55,14 @@ passport.use(new TwitterStrategy({
     });
   }
 ));
+
+//This allows clients to access the server and make requests.
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  next();
+});
 
 // GET /auth/twitter
 //   Use passport.authenticate() as route middleware to authenticate the
@@ -82,6 +98,7 @@ app.get('/auth/twitter/callback',
 
 /* API endpoint for getting user who has logged in's timeline */
 app.get('/twit', function(req, res){
+  console.log('twit has been accessed');
 	var twit = new twitter({
 	    consumer_key: 'jRSMv43lCUYUH0CCBCUDvm72E', // api key (from twitter app)
 	    consumer_secret: 'SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w',  // api secret (from twitter app)
@@ -104,6 +121,24 @@ app.get('/twit', function(req, res){
 	// });
 	// res.end();
 })
+
+app.post('/twitter', function(req, res){
+  console.log('twit has been accessed');
+  console.log(req.body.token);
+  var twit = new twitter({
+      consumer_key: 'jRSMv43lCUYUH0CCBCUDvm72E', // api key (from twitter app)
+      consumer_secret: 'SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w',  // api secret (from twitter app)
+      access_token_key: req.body.token,  // user key (from oauth response)
+      access_token_secret: req.body.secret  // user secret (from oauth response)
+  });
+
+  twit.get('/statuses/user_timeline.json', {include_entities:true}, function(data) {
+      console.log(util.inspect(data));
+      res.end(data[0])
+     
+  });
+})
+
 
 app.get('/logout', function(req, res){
   req.logout();
