@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var TWITTER_CONSUMER_KEY = "jRSMv43lCUYUH0CCBCUDvm72E";  // this is our app key
 var TWITTER_CONSUMER_SECRET = "SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w"; // this is our app secret
 
+// Brandon added 15-23
 app.use(cors());
 app.use( bodyParser.json() );   
 app.use( bodyParser.urlencoded() );
@@ -20,7 +21,7 @@ var session = require('express-session');
 app.use(session({ secret: 'new secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+// Brandon added 15-23
 
 
 passport.serializeUser(function(user, done) {
@@ -55,12 +56,12 @@ passport.use(new TwitterStrategy({
     });
   }
 ));
-
+//Brandon added 60 - 66;
 //This allows clients to access the server and make requests.
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   next();
 });
 
@@ -90,12 +91,13 @@ app.get('/auth/twitter/callback',
 
 	var info = {   // Builds out a response for the token and secret for any given user
 		token: tempToken,
-		s: tempSecret
+		secret: tempSecret
 	}
 
   res.end(JSON.stringify(info));  // returns the info object containing the user who just logged in token and secret
   });
 
+//Brandon believes 101 is legacy code currently
 /* API endpoint for getting user who has logged in's timeline */
 app.get('/twit', function(req, res){
   console.log('twit has been accessed');
@@ -122,6 +124,8 @@ app.get('/twit', function(req, res){
 	// res.end();
 })
 
+
+//Brandon created lines 129- 144;
 app.post('/twitter', function(req, res){
   console.log('twit has been accessed');
   console.log(req.body.token);
@@ -133,9 +137,9 @@ app.post('/twitter', function(req, res){
   });
 
   twit.get('/statuses/user_timeline.json', {include_entities:true}, function(data) {
-      console.log(util.inspect(data));
-      res.end(data[0])
-     
+      
+      res.end(JSON.stringify(data));
+
   });
 })
 
