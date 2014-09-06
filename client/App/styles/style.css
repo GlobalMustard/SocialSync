@@ -1,4 +1,139 @@
-.sm-logo {
-  height: 33px;
-  width: 33px;
+
+/*INDEX*/
+nav {
+  width: 25%;
+  float: left;
+  margin: 0 0 3px 0;
+  list-style: none;
+  background-color: #B0EFFF;
+
 }
+
+.nav-container {
+  height: 45px;
+  width: 585px;
+  margin-left: 10px;
+  background-color: #B0EFFF;
+}
+
+.app-container {
+  height: 600px;
+  width: 600px;
+  border-radius: 2px;
+  background-color: #FFF;
+}
+
+.app-banner {
+  width: 25%;
+  padding-top: 12px;
+  margin-left: 210px;
+  font-family: sans-serif;
+  font-weight: bolder;
+  font-size: 35px;
+  color: #FFF;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #23E9E1;
+}
+
+.app-banner-substring {
+  color: #23E9E1;
+}
+
+.nav-link {
+  margin-left: 10px;
+}
+
+.sm-logo {
+  margin-top: 5px;
+  height: 35px;
+  width: 35px;
+}
+
+.views-container {
+  width: 620px;
+  height: 620px;
+}
+
+
+/*********************************/
+
+/*AUTH*/
+.auth-container {
+  width: 620px;
+  height: 620px;
+}
+
+.login-form {
+
+}
+
+.login-input {
+
+}
+
+.login-button.container {
+
+}
+
+/*********************************/
+
+/*NOTIFICATIONS*/
+.notifications-container-twitter {
+  height: 540px;
+  width: 585px;
+  padding-top: 3px;
+  margin-top: 7px;
+  margin-left: 10px;
+  background-image: url('../assets/twitter/twitter-background.png'); 
+}
+
+.notifications-list-twitter {
+  list-style-type: none;
+  padding-top: 5px;
+}
+
+
+
+/*tweets*/
+.notifications-list-item-twitter {
+  padding: 3px;
+  height: auto;
+  overflow: scroll;
+  max-height: 200px;
+  min-height: 55px;
+  width: 95%;
+  margin: 3px;
+  background-color: #FFF;
+  border-top: 1px dotted #A5A3A3;
+  border-bottom: 1px dotted #A5A3A3;
+  box-shadow: -5px 5px 5px #5A5A5A;
+}
+
+.tweet-image {
+  height: 40px;
+  width: 40px;
+  float: left;
+
+}
+
+.tweet-text {
+  width: 90%;
+  float: right;
+  padding-left: 3px;
+}
+
+.tweet-user {
+  font-weight: 500;
+  color: #0066C4;
+}
+
+.tweet-message {
+  font-weight: 200;
+}
+
+.tweet-createdAt {
+  font-size: 12px;
+  font-weight: 100;
+  color: #A5A3A3;
+}
+

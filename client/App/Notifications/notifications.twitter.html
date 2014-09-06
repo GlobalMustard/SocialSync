@@ -1,10 +1,20 @@
-<ul class="notifications-list" ng-model="notifications.twitter">
-  <div>
-    <li class="notifications-list-item" ng-repeat="notification in notifications.twitter">
-      <img ng-src= "{{ notification.image }}"> 
-      <!-- TODO: make user bold type -->
-      {{ notification.user | bold }}: 
-      {{ notification.message }}
-    </li>
-  </div>
-</ul>
+<div class="notifications-container-twitter">
+  <ul class="notifications-list" ng-controller="NotificationsController" ng-model="notifications.twitter">
+    <div>
+      
+      <li class="notifications-list-item-twitter" ng-repeat="notification in notifications.twitter">
+        <div class="tweet-image">
+          <img ng-src= "{{ notification.image }}">
+        </div>
+        <div class="tweet-text"> 
+          <p>
+            <span class="tweet-user">{{ notification.user }}:</span>
+            <span class="tweet-message">{{ notification.message }}</span>
+          </p>
+          <div class="tweet-createdAt">{{ notification.createdAt }}</div>
+      </div>
+      </li>
+
+    </div>
+  </ul>
+</div>

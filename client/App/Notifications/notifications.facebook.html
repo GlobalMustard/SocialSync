@@ -1,10 +1,10 @@
 <ul class="notifications-list" ng-model="notifications.facebook">
   <div>
-    <li class="notifications-list-item" ng-repeat="notification in notifications.facebook">
-      <img ng-src= "{{ notification.image }}"> 
-      <!-- TODO: make user bold type -->
-      {{ notification.user }}: 
+    <li class="notifications-list-item-facebook" ng-repeat="notification in notifications.facebook">
+      <img ng-src= "{{ notification.image }}">
+      <p class="facebook-user">{{ notification.user }}:</p> 
       {{ notification.message }}
+      {{ notifications.createdAt }}
     </li>
   </div>
 </ul>
