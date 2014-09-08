@@ -6,7 +6,6 @@ nav {
   margin: 0 0 3px 0;
   list-style: none;
   background-color: #B0EFFF;
-
 }
 
 .nav-container {
@@ -73,6 +72,8 @@ nav {
 /*********************************/
 
 /*NOTIFICATIONS*/
+
+/*tweets*/
 .notifications-container-twitter {
   height: 540px;
   width: 585px;
@@ -88,9 +89,6 @@ nav {
   padding-top: 5px;
 }
 
-
-
-/*tweets*/
 .notifications-list-item-twitter {
   padding: 3px;
   height: auto;
@@ -109,7 +107,6 @@ nav {
   height: 40px;
   width: 40px;
   float: left;
-
 }
 
 .tweet-text {
@@ -133,3 +130,80 @@ nav {
   color: #A5A3A3;
 }
 
+/*facebook notifications*/
+.notifications-container-facebook {
+  height: 540px;
+  width: 575px;
+  overflow: scroll;
+  padding-top: 3px;
+  margin-top: 7px;
+  margin-left: 10px;
+  border: 5px solid #E0FAFF;
+  background: #CFF3FC;;
+}
+
+.notifications-list-facebook {
+  list-style-type: none;
+  padding-top: 5px;
+}
+.notifications-list-item-facebook {
+  padding: 3px;
+  height: auto;
+  overflow: scroll;
+  max-height: 200px;
+  min-height: 55px;
+  width: 95%;
+  margin: 3px;
+  background-color: #FFF;
+  border-top: 1px dotted #A5A3A3;
+  border-bottom: 1px solid #A5A3A3;
+  box-shadow: -5px 5px 5px #5A5A5A;
+}
+
+.notifications-list-item-facebook:hover {
+  background-color: #E6E8EC;
+}
+
+.fb-notif-first-user-image {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #A5A3A3;
+  float: left;
+}
+
+.fb-notif-text {
+  width: 70%;
+  float: left;
+  padding-left: 3px;
+  margin: 1px;
+}
+
+.fb-paragraph {
+  min-height: 10px;
+}
+
+.fb-notif-message {
+  font-weight: 200;
+}
+
+.fb-notif-users {
+  font-weight: bold;
+}
+
+.fb-notif-photo {
+  height: 40px;
+  width: 80px;
+  float: right;
+}
+
+.fb-notif-icon {
+  height: 16px;
+  width: 16px;
+}
+
+.fb-notif-createdAt {
+  width: 25%;
+  font-size: 12px;
+  font-weight: 100;
+  color: #A5A3A3;
+}

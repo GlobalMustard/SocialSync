@@ -19,10 +19,10 @@
 
       <div class="nav-container">
         <nav ng-controller="NotificationsController">
-          <!-- TODO: figure out if you can ng-click image wrapped in link -->
-          <a class="nav-link"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png" ng-click="getNotifications('twitter')"></a>
+          <!-- NOTE: to get 'real' functionality, change ui-sref directives to ng-click directives with getNotifications(socialMediaName) passed in...ie: ng-click="getNotifications('twitter')" -->
+          <a class="nav-link" ui-sref="notifications.twitter"><img class="sm-logo" src="app/assets/twitter/twitter-logo.png"></a>
 
-          <a class="nav-link" ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ng-click="getNotifications()"></a>
+          <a class="nav-link" ui-sref="notifications.facebook"><img class="sm-logo" src="app/assets/facebook/facebook-logo.png" ui-sref="notifications.facebook"></a>
 
           <a class="nav-link" ui-sref="notifications.google-plus"><img class="sm-logo" src="app/assets/google-plus/google-plus-logo.png" ng-click="getNotifications()"></a>
         </nav>
