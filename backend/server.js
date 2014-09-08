@@ -11,18 +11,14 @@ var bodyParser = require('body-parser');
 var TWITTER_CONSUMER_KEY = "jRSMv43lCUYUH0CCBCUDvm72E";  // this is our app key
 var TWITTER_CONSUMER_SECRET = "SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w"; // this is our app secret
 
-// Brandon added 15-23
-app.use(cors());
-app.use( bodyParser.json() );   
-app.use( bodyParser.urlencoded() );
-
 /* Express and passport initializiation */
 var session = require('express-session');
 app.use(session({ secret: 'new secret' }));
 app.use(passport.initialize());
 app.use(passport.session());
-// Brandon added 15-23
-
+app.use(cors());
+app.use(bodyParser.json());   
+app.use(bodyParser.urlencoded());
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -46,17 +42,14 @@ passport.use(new TwitterStrategy({
     process.nextTick(function () {
       tempToken = token;
       tempSecret = tokenSecret;
+      console.log(done);
       console.log("Generated token is: ", token);
       console.log("Generated token secret is: ", tokenSecret);
-      // To keep the example simple, the user's Twitter profile is returned to
-      // represent the logged-in user.  In a typical application, you would want
-      // to associate the Twitter account with a user record in your database,
-      // and return that user instead.
       return done(null, profile);
     });
   }
 ));
-//Brandon added 60 - 66;
+
 //This allows clients to access the server and make requests.
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -65,11 +58,12 @@ app.all('/*', function(req, res, next) {
   next();
 });
 
-// GET /auth/twitter
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  The first step in Twitter authentication will involve redirecting
-//   the user to twitter.com.  After authorization, the Twitter will redirect
-//   the user back to this application at /auth/twitter/callback
+/*  
+GET /auth/twitter 
+  The first step in Twitter authentication will involve redirecting
+  the user to twitter.com.  After authorization, the Twitter will redirect
+  the user back to this application at /auth/twitter/callback
+*/
 app.get('/auth/twitter',
   passport.authenticate('twitter'),
   function(req, res){
@@ -77,69 +71,49 @@ app.get('/auth/twitter',
     // function will not be called.
   });
 
-// GET /auth/twitter/callback
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request.  If authentication fails, the user will be redirected back to the
-//   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the home page.
+/*  
+GET /auth/twitter/callback
+  Once user is authenticated at twitter, they will be redirected to this endpoint where we can return then
+  user's token and secret to then be stored in localstorage
+*/
 app.get('/auth/twitter/callback', 
   passport.authenticate('twitter', { failureRedirect: '/login' }),
   function(req, res) {
-  	console.log("Inside callback token is: ", tempToken);
-  	console.log("Inside callback secret is: ", tempSecret);
+    // console.log(res);
+    // console.log(req);
+    // console.log("Inside callback token is: ", tempToken);
+    // console.log("Inside callback secret is: ", tempSecret);
 
-
-	var info = {   // Builds out a response for the token and secret for any given user
-		token: tempToken,
-		secret: tempSecret
-	}
+  var info = {   // Builds out a response for the token and secret for any given user
+    token: tempToken,
+    secret: tempSecret
+  }
 
   res.end(JSON.stringify(info));  // returns the info object containing the user who just logged in token and secret
-  });
+});
 
-//Brandon believes 101 is legacy code currently
-/* API endpoint for getting user who has logged in's timeline */
-app.get('/twit', function(req, res){
-  console.log('twit has been accessed');
-	var twit = new twitter({
-	    consumer_key: 'jRSMv43lCUYUH0CCBCUDvm72E', // api key (from twitter app)
-	    consumer_secret: 'SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w',  // api secret (from twitter app)
-	    access_token_key: tempToken,  // user key (from oauth response)
-	    access_token_secret: tempSecret  // user secret (from oauth response)
-	});
-
-	twit.get('/statuses/user_timeline.json', {include_entities:true}, function(data) {
-	    res.end(util.inspect(data))
-	    // console.log(util.inspect(data));
-	});
-
-	/* This can be activated for user streams if we decide to switch back */
-	// twit.stream('user', {track:'nodejs'}, function(stream) {
-	//     stream.on('data', function(data) {
-	//         console.log(util.inspect(data));
-	//     });
-	//     // Disconnect stream after fifty seconds
-	//     // setTimeout(stream.destroy, 50000);
-	// });
-	// res.end();
-})
-
-
-//Brandon created lines 129- 144;
+/* API endpoint for accessing user's timeline */
 app.post('/twitter', function(req, res){
   console.log('twit has been accessed');
   console.log(req.body.token);
   var twit = new twitter({
-      consumer_key: 'jRSMv43lCUYUH0CCBCUDvm72E', // api key (from twitter app)
-      consumer_secret: 'SOo7SwKs9VtXocESi1UKEURI330PDUlFmgUytR7eohnoS5dZ6w',  // api secret (from twitter app)
+      consumer_key: TWITTER_CONSUMER_KEY, // api key (from twitter app)
+      consumer_secret: TWITTER_CONSUMER_SECRET,  // api secret (from twitter app)
       access_token_key: req.body.token,  // user key (from oauth response)
       access_token_secret: req.body.secret  // user secret (from oauth response)
   });
 
-  twit.get('/statuses/user_timeline.json', {include_entities:true}, function(data) {
-      
-      res.end(JSON.stringify(data));
-
+  twit.get('/statuses/home_timeline.json', {include_entities:true}, function(data) {
+    var arr = [];
+    for(var i = 0; i < data.length; i++){
+      var obj = {};
+      obj.image = data[i].user.profile_image_url;
+      obj.user = data[i].user.screen_name;
+      obj.message = data[i].text;
+      obj.createdAt = data[i].created_at;
+      arr.push(obj);
+    }
+    res.end(JSON.stringify(arr));
   });
 })
 

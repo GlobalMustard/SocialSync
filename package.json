@@ -1,0 +1,28 @@
+{
+  "name": "SocialSync",
+  "version": "0.0.0",
+  "description": "SocialSync: chrome extension enabling real-time notification of social media events.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GlobalMustard/SocialSync.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GlobalMustard/SocialSync/issues"
+  },
+  "homepage": "https://github.com/GlobalMustard/SocialSync",
+  "dependencies": {
+    "body-parser": "^1.7.0",
+    "cors": "^2.4.1",
+    "express": "^4.8.8",
+    "express-session": "^1.7.6",
+    "passport": "^0.2.1",
+    "passport-twitter": "^1.0.2",
+    "twitter": "^0.2.9"
+  }
+}
