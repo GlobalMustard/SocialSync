@@ -21,7 +21,9 @@
     "cors": "^2.4.1",
     "express": "^4.8.8",
     "express-session": "^1.7.6",
+    "facebook-api": "^0.1.2",
     "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3",
     "passport-twitter": "^1.0.2",
     "twitter": "^0.2.9"
   }
