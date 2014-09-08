@@ -117,6 +117,29 @@ app.post('/twitter', function(req, res){
   });
 })
 
+app.get('/twitter', function(req, res){
+  console.log('twit has been accessed');
+  console.log(req.body.token);
+  var twit = new twitter({
+      consumer_key: TWITTER_CONSUMER_KEY, // api key (from twitter app)
+      consumer_secret: TWITTER_CONSUMER_SECRET,  // api secret (from twitter app)
+      access_token_key: req.body.token,  // user key (from oauth response)
+      access_token_secret: req.body.secret  // user secret (from oauth response)
+  });
+
+  twit.get('/statuses/home_timeline.json', {include_entities:true}, function(data) {
+    var arr = [];
+    for(var i = 0; i < data.length; i++){
+      var obj = {};
+      obj.image = data[i].user.profile_image_url;
+      obj.user = data[i].user.screen_name;
+      obj.message = data[i].text;
+      obj.createdAt = data[i].created_at;
+      arr.push(obj);
+    }
+    res.end(JSON.stringify(arr));
+  });
+})
 
 app.get('/logout', function(req, res){
   req.logout();

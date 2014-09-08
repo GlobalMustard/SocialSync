@@ -37,24 +37,41 @@ angular.module('socialsync.auth', ['ui.router'])
     });
   };
 
-  //may need to refactor isAuth() AND/OR login to return bool 
-  var isAuth = function() {
-    return $http({
-      method: 'GET', 
-      url: '', //TODO: GET URL INFO
-    })
-    .then(function(resp) {
-      return resp.data;
-    }) 
-    .catch(function(err) {
-      $state.go('') 
-      //TODO: navigate to 'You're not signed in' in appropriate auth view state
-    });
-  }
 
+  var isAuth = function(socialMediaName) {
+    var tempToken;
+
+    getLocalData(socialMediaName, function(data) {
+      tempToken = data.token;
+    });
+
+    if(tempToken === undefined) {
+      return false;
+    }
+    return true;
+  }
+  
+  var setLocalData = function(key, value) {  
+    var dataObjectToBeStored = {};
+    dataObjectToBeStored[key] = value;
+    chrome.storage.sync.set(dataObjectToBeStored, function (){});
+  };
+
+  //getLocalData works sort of like a hash table. Use the key to get the value.
+  //In our code, the key is usually the name of the social media site.
+  //The callback will run on the data that is returned.
+  var getLocalData = function(key, callback) {
+    chrome.storage.sync.get(key, function (data) { 
+      console.log('storage get promise has executed' + data[key]);
+      callback(data[key]);
+    });
+  };
+  
   return {
     login: login,
-    isAuth: isAuth
+    isAuth: isAuth,
+    setLocalData: setLocalData,
+    getLocalData: getLocalData
   };
 })
 
