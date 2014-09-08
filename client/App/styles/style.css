@@ -63,16 +63,11 @@ nav {
   height: 620px;
 }
 
-.login-form {
-
-}
-
-.login-input {
-
-}
-
-.login-button.container {
-
+.twitter-login {
+  height: 580px;
+  width: 580px;
+  margin-left: 10px;
+  overflow: scroll;
 }
 
 /*********************************/
@@ -81,6 +76,7 @@ nav {
 .notifications-container-twitter {
   height: 540px;
   width: 585px;
+  overflow: scroll;
   padding-top: 3px;
   margin-top: 7px;
   margin-left: 10px;
