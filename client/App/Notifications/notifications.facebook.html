@@ -1,10 +1,26 @@
-<ul class="notifications-list" ng-model="notifications.facebook">
-  <div>
-    <li class="notifications-list-item-facebook" ng-repeat="notification in notifications.facebook">
-      <img ng-src= "{{ notification.image }}">
-      <p class="facebook-user">{{ notification.user }}:</p> 
-      {{ notification.message }}
-      {{ notifications.createdAt }}
-    </li>
-  </div>
-</ul>
+<div class="notifications-container-facebook">
+  <ul class="notifications-list" ng-controller="NotificationsController" ng-model="notifications.facebook">
+    <div>
+
+       <li class="notifications-list-item-facebook" ng-repeat="notification in notifications.facebook">
+          <div class="fb-notif-first-user-image">
+            <img src= "{{ notification.first_user_image }}">
+          </div>
+          <div class="fb-notif-text"> 
+            <p class="fb-paragraph">
+              <span class="fb-notif-users">{{ notification.users }}</span>
+              <span class="fb-notif-message">{{ notification.message }}</span>
+            </p>
+            <div class="fb-notif-icon">
+              <img src="{{ notification.icon }}">
+            </div>
+            <div class="fb-notif-createdAt">{{ notification.createdAt }}</div>
+        </div>
+        <div class="fb-notif-photo"> 
+          <img ng-src="{{ notification.photo }}">
+        </div>
+        </li>
+    
+    </div>
+  </ul>
+</div>
